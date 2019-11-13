@@ -1,0 +1,10 @@
+{
+    "AppSyncApiName": "realtimepollapi",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authcognitoacb0a7fe",
+            "Outputs.UserPoolId"
+        ]
+    }
+}

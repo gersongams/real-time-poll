@@ -1,0 +1,19 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "real-time-poll-dev-20191112012011-authRole",
+            "UnauthRoleArn": "arn:aws:iam::223184242587:role/real-time-poll-dev-20191112012011-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::223184242587:role/real-time-poll-dev-20191112012011-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "real-time-poll-dev-20191112012011-deployment",
+            "UnauthRoleName": "real-time-poll-dev-20191112012011-unauthRole",
+            "StackName": "real-time-poll-dev-20191112012011",
+            "StackId": "arn:aws:cloudformation:us-east-1:223184242587:stack/real-time-poll-dev-20191112012011/7ba9c5b0-0514-11ea-b9b4-12a48490849f"
+        },
+        "categories": {
+            "auth": {
+                "cognitoacb0a7fe": {}
+            }
+        }
+    }
+}

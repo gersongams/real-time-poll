@@ -1,0 +1,25 @@
+type Poll @model {
+  id: ID!
+  name: String!
+  questions: [Question] @connection(name: "PollQuestions")
+}
+
+type Question @model {
+  id: ID!
+  title: String!
+  number: Int
+  poll: Poll @connection(name: "PollQuestions")
+  possibleAnswers: [Answer] @connection(name: "QuestionAnswers")
+}
+
+type Answer @model {
+  id: ID!
+  text: String!
+  question: Question @connection(name: "QuestionAnswers")
+  responses: [Response] @connection(name: "AnswerResponse")
+}
+
+type Response @model {
+  id: ID!
+  answer: Answer @connection(name: "AnswerResponse")
+}
