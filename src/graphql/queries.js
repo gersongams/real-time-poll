@@ -52,6 +52,13 @@ export const getQuestion = `query GetQuestion($id: ID!) {
       }
       nextToken
     }
+    responses {
+      items {
+        id
+        questionId
+      }
+      nextToken
+    }
   }
 }
 `;
@@ -70,6 +77,9 @@ export const listQuestions = `query ListQuestions(
         name
       }
       possibleAnswers {
+        nextToken
+      }
+      responses {
         nextToken
       }
     }
@@ -92,10 +102,14 @@ export const getAnswer = `query GetAnswer($id: ID!) {
       possibleAnswers {
         nextToken
       }
+      responses {
+        nextToken
+      }
     }
     responses {
       items {
         id
+        questionId
       }
       nextToken
     }
@@ -127,6 +141,7 @@ export const listAnswers = `query ListAnswers(
 export const getResponse = `query GetResponse($id: ID!) {
   getResponse(id: $id) {
     id
+    questionId
     answer {
       id
       text
@@ -134,6 +149,21 @@ export const getResponse = `query GetResponse($id: ID!) {
         id
         title
         number
+      }
+      responses {
+        nextToken
+      }
+    }
+    question {
+      id
+      title
+      number
+      poll {
+        id
+        name
+      }
+      possibleAnswers {
+        nextToken
       }
       responses {
         nextToken
@@ -150,9 +180,15 @@ export const listResponses = `query ListResponses(
   listResponses(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
+      questionId
       answer {
         id
         text
+      }
+      question {
+        id
+        title
+        number
       }
     }
     nextToken

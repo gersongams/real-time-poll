@@ -2,7 +2,7 @@ import Amplify from "aws-amplify";
 import awsconfig from "./aws-exports";
 import { withAuthenticator } from "aws-amplify-react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import React, { Suspense, lazy, Fragment } from "react";
+import React, { Suspense, lazy } from "react";
 import PubSub from "@aws-amplify/pubsub";
 import Layout from "./components/Layout";
 import { ThemeProvider } from "styled-components";
@@ -44,6 +44,7 @@ const signUpConfig = {
 const Home = lazy(() => import("./pages/Home"));
 const Result = lazy(() => import("./pages/Result"));
 const Question = lazy(() => import("./pages/Question"));
+const Thanks = lazy(() => import("./pages/Thanks"));
 
 const App = () => (
   <ThemeProvider theme={theme}>
@@ -54,8 +55,9 @@ const App = () => (
           <Suspense fallback={<Loading />}>
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route exact path="/question/:id" component={Question} />
-              <Route path="/results" component={Result} />
+              <Route path="/question/:id" component={Question} />
+              <Route path="/results/:id" component={Result} />
+              <Route path="/thanks" component={Thanks} />
             </Switch>
           </Suspense>
         </Layout>

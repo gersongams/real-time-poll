@@ -1,12 +1,12 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { useParams, withRouter } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { API, graphqlOperation } from "aws-amplify";
 import * as queries from "../graphql/queries";
 import * as mutations from "../graphql/mutations";
 
 import styled from "styled-components";
 import Loading from "../components/Loading";
-import { Button, Col, Row } from "antd";
+import { Button } from "antd";
 
 const QuestioStyle = styled.div`
   max-width: 750px;
@@ -31,6 +31,7 @@ const QuestioStyle = styled.div`
 
 const Question = props => {
   let { id } = useParams();
+  let history = useHistory();
   const [question, setQuestion] = useState([]);
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -49,9 +50,18 @@ const Question = props => {
     getData();
   }, [count]);
 
-  const selectAlternative = async id => {
-    console.log("id selected", id, props);
-    //await API.graphql(graphqlOperation(mutations.createResponse, { input: { id } }))
+  const selectAlternative = async answerId => {
+    console.log("id selected", answerId, props);
+    const response = {
+      responseAnswerId: answerId,
+      responseQuestionId: id,
+      questionId: id
+    };
+
+    await API.graphql(
+      graphqlOperation(mutations.createResponse, { input: response })
+    );
+    history.push(`/results/${id}`);
   };
 
   return (
@@ -84,4 +94,4 @@ const Question = props => {
   );
 };
 
-export default withRouter(Question);
+export default Question;

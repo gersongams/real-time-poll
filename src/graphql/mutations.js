@@ -65,6 +65,13 @@ export const createQuestion = `mutation CreateQuestion($input: CreateQuestionInp
       }
       nextToken
     }
+    responses {
+      items {
+        id
+        questionId
+      }
+      nextToken
+    }
   }
 }
 `;
@@ -84,6 +91,13 @@ export const updateQuestion = `mutation UpdateQuestion($input: UpdateQuestionInp
       items {
         id
         text
+      }
+      nextToken
+    }
+    responses {
+      items {
+        id
+        questionId
       }
       nextToken
     }
@@ -109,6 +123,13 @@ export const deleteQuestion = `mutation DeleteQuestion($input: DeleteQuestionInp
       }
       nextToken
     }
+    responses {
+      items {
+        id
+        questionId
+      }
+      nextToken
+    }
   }
 }
 `;
@@ -127,10 +148,14 @@ export const createAnswer = `mutation CreateAnswer($input: CreateAnswerInput!) {
       possibleAnswers {
         nextToken
       }
+      responses {
+        nextToken
+      }
     }
     responses {
       items {
         id
+        questionId
       }
       nextToken
     }
@@ -152,10 +177,14 @@ export const updateAnswer = `mutation UpdateAnswer($input: UpdateAnswerInput!) {
       possibleAnswers {
         nextToken
       }
+      responses {
+        nextToken
+      }
     }
     responses {
       items {
         id
+        questionId
       }
       nextToken
     }
@@ -177,10 +206,14 @@ export const deleteAnswer = `mutation DeleteAnswer($input: DeleteAnswerInput!) {
       possibleAnswers {
         nextToken
       }
+      responses {
+        nextToken
+      }
     }
     responses {
       items {
         id
+        questionId
       }
       nextToken
     }
@@ -190,6 +223,7 @@ export const deleteAnswer = `mutation DeleteAnswer($input: DeleteAnswerInput!) {
 export const createResponse = `mutation CreateResponse($input: CreateResponseInput!) {
   createResponse(input: $input) {
     id
+    questionId
     answer {
       id
       text
@@ -197,6 +231,21 @@ export const createResponse = `mutation CreateResponse($input: CreateResponseInp
         id
         title
         number
+      }
+      responses {
+        nextToken
+      }
+    }
+    question {
+      id
+      title
+      number
+      poll {
+        id
+        name
+      }
+      possibleAnswers {
+        nextToken
       }
       responses {
         nextToken
@@ -208,6 +257,7 @@ export const createResponse = `mutation CreateResponse($input: CreateResponseInp
 export const updateResponse = `mutation UpdateResponse($input: UpdateResponseInput!) {
   updateResponse(input: $input) {
     id
+    questionId
     answer {
       id
       text
@@ -220,12 +270,28 @@ export const updateResponse = `mutation UpdateResponse($input: UpdateResponseInp
         nextToken
       }
     }
+    question {
+      id
+      title
+      number
+      poll {
+        id
+        name
+      }
+      possibleAnswers {
+        nextToken
+      }
+      responses {
+        nextToken
+      }
+    }
   }
 }
 `;
 export const deleteResponse = `mutation DeleteResponse($input: DeleteResponseInput!) {
   deleteResponse(input: $input) {
     id
+    questionId
     answer {
       id
       text
@@ -233,6 +299,21 @@ export const deleteResponse = `mutation DeleteResponse($input: DeleteResponseInp
         id
         title
         number
+      }
+      responses {
+        nextToken
+      }
+    }
+    question {
+      id
+      title
+      number
+      poll {
+        id
+        name
+      }
+      possibleAnswers {
+        nextToken
       }
       responses {
         nextToken

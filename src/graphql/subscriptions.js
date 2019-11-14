@@ -65,6 +65,13 @@ export const onCreateQuestion = `subscription OnCreateQuestion {
       }
       nextToken
     }
+    responses {
+      items {
+        id
+        questionId
+      }
+      nextToken
+    }
   }
 }
 `;
@@ -84,6 +91,13 @@ export const onUpdateQuestion = `subscription OnUpdateQuestion {
       items {
         id
         text
+      }
+      nextToken
+    }
+    responses {
+      items {
+        id
+        questionId
       }
       nextToken
     }
@@ -109,6 +123,13 @@ export const onDeleteQuestion = `subscription OnDeleteQuestion {
       }
       nextToken
     }
+    responses {
+      items {
+        id
+        questionId
+      }
+      nextToken
+    }
   }
 }
 `;
@@ -127,10 +148,14 @@ export const onCreateAnswer = `subscription OnCreateAnswer {
       possibleAnswers {
         nextToken
       }
+      responses {
+        nextToken
+      }
     }
     responses {
       items {
         id
+        questionId
       }
       nextToken
     }
@@ -152,10 +177,14 @@ export const onUpdateAnswer = `subscription OnUpdateAnswer {
       possibleAnswers {
         nextToken
       }
+      responses {
+        nextToken
+      }
     }
     responses {
       items {
         id
+        questionId
       }
       nextToken
     }
@@ -177,10 +206,14 @@ export const onDeleteAnswer = `subscription OnDeleteAnswer {
       possibleAnswers {
         nextToken
       }
+      responses {
+        nextToken
+      }
     }
     responses {
       items {
         id
+        questionId
       }
       nextToken
     }
@@ -190,6 +223,7 @@ export const onDeleteAnswer = `subscription OnDeleteAnswer {
 export const onCreateResponse = `subscription OnCreateResponse {
   onCreateResponse {
     id
+    questionId
     answer {
       id
       text
@@ -197,6 +231,21 @@ export const onCreateResponse = `subscription OnCreateResponse {
         id
         title
         number
+      }
+      responses {
+        nextToken
+      }
+    }
+    question {
+      id
+      title
+      number
+      poll {
+        id
+        name
+      }
+      possibleAnswers {
+        nextToken
       }
       responses {
         nextToken
@@ -208,6 +257,7 @@ export const onCreateResponse = `subscription OnCreateResponse {
 export const onUpdateResponse = `subscription OnUpdateResponse {
   onUpdateResponse {
     id
+    questionId
     answer {
       id
       text
@@ -220,12 +270,28 @@ export const onUpdateResponse = `subscription OnUpdateResponse {
         nextToken
       }
     }
+    question {
+      id
+      title
+      number
+      poll {
+        id
+        name
+      }
+      possibleAnswers {
+        nextToken
+      }
+      responses {
+        nextToken
+      }
+    }
   }
 }
 `;
 export const onDeleteResponse = `subscription OnDeleteResponse {
   onDeleteResponse {
     id
+    questionId
     answer {
       id
       text
@@ -233,6 +299,21 @@ export const onDeleteResponse = `subscription OnDeleteResponse {
         id
         title
         number
+      }
+      responses {
+        nextToken
+      }
+    }
+    question {
+      id
+      title
+      number
+      poll {
+        id
+        name
+      }
+      possibleAnswers {
+        nextToken
       }
       responses {
         nextToken
