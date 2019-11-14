@@ -1,8 +1,13 @@
 import Amplify from "aws-amplify";
 import awsconfig from "./aws-exports";
 import { withAuthenticator } from "aws-amplify-react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import React, { Suspense, lazy } from "react";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch
+} from "react-router-dom";
+import React, { lazy, Suspense } from "react";
 import PubSub from "@aws-amplify/pubsub";
 import Layout from "./components/Layout";
 import { ThemeProvider } from "styled-components";
@@ -54,6 +59,7 @@ const App = () => (
         <Layout>
           <Suspense fallback={<Loading />}>
             <Switch>
+              <Redirect path="/index.html" to="/" />
               <Route exact path="/" component={Home} />
               <Route path="/question/:id" component={Question} />
               <Route path="/results/:id" component={Result} />
