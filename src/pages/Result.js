@@ -58,7 +58,34 @@ const Result = props => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const getData = async () => {
+      const {
+        data: {
+          listResponses: { items }
+        }
+      } = await API.graphql(
+        graphqlOperation(getResponses, {
+          limit: 500,
+          filter: {
+            questionId: { eq: id }
+          }
+        })
+      );
+      const allData = items.map(i => ({ id: i.id, value: i.answer.text }));
+      const obj = {};
+      allData.forEach(i => {
+        obj[i.value] = (obj[i.value] || 0) + 1;
+      });
+      const data = Object.keys(obj).map(k => ({
+        id: k,
+        value: obj[k],
+        label: k
+      }));
+      setResponses(data);
+      setLoading(false);
+    };
     getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -92,36 +119,9 @@ const Result = props => {
         }
       }
     });
-
     return () => subscription.unsubscribe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [responses]);
-
-  const getData = async () => {
-    const {
-      data: {
-        listResponses: { items }
-      }
-    } = await API.graphql(
-      graphqlOperation(getResponses, {
-        limit: 500,
-        filter: {
-          questionId: { eq: id }
-        }
-      })
-    );
-    const allData = items.map(i => ({ id: i.id, value: i.answer.text }));
-    const obj = {};
-    allData.forEach(i => {
-      obj[i.value] = (obj[i.value] || 0) + 1;
-    });
-    const data = Object.keys(obj).map(k => ({
-      id: k,
-      value: obj[k],
-      label: k
-    }));
-    setResponses(data);
-    setLoading(false);
-  };
 
   const getNextId = () => {
     const {

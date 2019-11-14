@@ -10,14 +10,13 @@ const GlobalProvider = props => {
     if (data) {
       updateStore(parsedData);
     }
-  }, [0]);
+  }, []);
 
   return (
     <GlobalContext.Provider
       value={{
         data: store,
         triggerUpdate: value => {
-          console.log("Updating global provider", value);
           const data = { ...store, ...value };
           updateStore(data);
           localStorage.setItem("store", JSON.stringify(data));

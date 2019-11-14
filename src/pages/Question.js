@@ -29,29 +29,25 @@ const QuestioStyle = styled.div`
   }
 `;
 
-const Question = props => {
+const Question = () => {
   let { id } = useParams();
   let history = useHistory();
   const [question, setQuestion] = useState([]);
-  const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log("my props", props);
     const getData = async () => {
       const {
         data: { getQuestion }
       } = await API.graphql(graphqlOperation(queries.getQuestion, { id }));
       setQuestion(getQuestion);
-      console.log(getQuestion);
       setLoading(false);
     };
-
     getData();
-  }, [count]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const selectAlternative = async answerId => {
-    console.log("id selected", answerId, props);
     const response = {
       responseAnswerId: answerId,
       responseQuestionId: id,
