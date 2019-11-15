@@ -4,7 +4,7 @@ import { API, graphqlOperation } from "aws-amplify";
 import { withGlobalContext } from "../utils/provider";
 import PieChart from "../components/PieChar";
 import styled from "styled-components";
-import { Button } from "antd";
+import Button from "../components/Button";
 import Loading from "../components/Loading";
 
 export const getResponses = `query ListResponses(

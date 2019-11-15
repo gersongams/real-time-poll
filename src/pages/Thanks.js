@@ -1,6 +1,6 @@
 import React from "react";
 import ThankYou from "../assets/thanks.jpg";
-import { Button } from "antd";
+import Button from "../components/Button";
 import { Link } from "react-router-dom";
 
 const Thanks = () => (

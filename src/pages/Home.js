@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "antd";
+import Button from "../components/Button";
 import Globant from "../assets/globant-logo-dark.svg";
 import styled from "styled-components";
 import { Link } from "react-router-dom";

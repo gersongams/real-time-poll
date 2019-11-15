@@ -1,12 +1,12 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { API, graphqlOperation } from "aws-amplify";
 import * as queries from "../graphql/queries";
 import * as mutations from "../graphql/mutations";
 
 import styled from "styled-components";
 import Loading from "../components/Loading";
-import { Button } from "antd";
+import Button from "../components/Button";
 
 const QuestioStyle = styled.div`
   max-width: 750px;
